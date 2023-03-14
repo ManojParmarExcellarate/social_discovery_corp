@@ -20,6 +20,11 @@ module Scraper
         post_links.each_with_index{ |link, index| post_details.push("#{ index + 1 }) #{link.href}") }
         File.open("#{@scrapping_dir}/posts-link-details.txt", 'wb') { |f| f.write(post_details.join("\n")) }
 
+        post_links.each_with_index do |link, index|
+          post_dir = "#{@scrapping_dir}/Post-#{ index + 1 }"
+          Dir.mkdir(post_dir) unless File.exist?(post_dir)
+          ManageIndividualPost.perform(post_dir, link)
+        end
       end
     end
   end
