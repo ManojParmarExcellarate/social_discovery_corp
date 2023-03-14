@@ -21,6 +21,7 @@ module Scraper
         sleep(3)
         
         TakeProfileFullScreenshot.perform(@browser, @scrapping_dir)
+        ScrapAllPostsOfUser.perform(@browser, @scrapping_dir)
         @browser.close
       end
     end
