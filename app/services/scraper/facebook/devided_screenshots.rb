@@ -27,10 +27,7 @@ module Scraper
         @browser.window.resize_to(screen_width, desired_height) 
 
         screen_width = @browser.execute_script("return window.scrollBy(0, -#{screen_height})")
-        path_for_data = "#{Rails.public_path}/divided_ss/#{@dirname}"
-        Dir.mkdir(path_for_data) unless File.exist?(path_for_data)
-
-        path_for_data += "/#{timestamp}"
+        path_for_data = @dirname
         Dir.mkdir(path_for_data) unless File.exist?(path_for_data)
 
         (1..no_of_screens).each do |no_of_screen|

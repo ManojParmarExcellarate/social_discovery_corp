@@ -10,6 +10,8 @@ module Scraper
         @timestamp = timestamp
         @date_filter = date_filter
         @browser = Watir::Browser.new :chrome, options: OPTIONS
+        @scrapping_dir = "#{Rails.public_path}/FACEBOOK_SCRAPPING/#{@profile_link.split('/').last}-#{@timestamp}"
+        Dir.mkdir(@scrapping_dir) unless File.exist?(@scrapping_dir)
       end
 
       def perform
@@ -18,13 +20,7 @@ module Scraper
         ApplyDateFilter.perform(@browser, @date_filter)
         sleep(3)
         
-        (1..5).each do |click|    
-          puts "---- Scrolling #{click} ----"
-          @browser.send_keys :space
-          sleep(2)
-        end
-        
-        FullPageScreenshot.perform(@browser, 'FullProfile')
+        TakeProfileFullScreenshot.perform(@browser, @scrapping_dir)
         @browser.close
       end
     end
