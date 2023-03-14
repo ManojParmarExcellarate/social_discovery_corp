@@ -30,4 +30,4 @@
 # Ignore master key for decrypting credentials and more.
 /config/master.key
 /config/database.yml
-/public/divided_ss/*
+public/FACEBOOK_SCRAPPING/*
