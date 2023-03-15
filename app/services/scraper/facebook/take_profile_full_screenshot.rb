@@ -13,10 +13,16 @@ module Scraper
         while scroll_again do
           no_of_scrolls += 1
           puts "---- Scrolling #{no_of_scrolls} ----"
-          @browser.send_keys :space
+          (3 + ((no_of_scrolls / 2))).times { @browser.send_keys(:space) }
           sleep(3)
-          screen_height_new = @browser.execute_script("return Math.max(document.body.scrollHeight,document.body.offsetHeight,document.documentElement.clientHeight,document.documentElement.scrollHeight,document.documentElement.offsetHeight);")
-          scroll_again = (screen_height_new > screen_height_old && no_of_scrolls >= 100)
+          screen_height_new = @browser.execute_script("return Math.max(
+            document.body.scrollHeight,
+            document.body.offsetHeight,
+            document.documentElement.clientHeight,
+            document.documentElement.scrollHeight,
+            document.documentElement.offsetHeight
+          );")
+          scroll_again = (screen_height_new > screen_height_old && no_of_scrolls <= 100)
           screen_height_old = screen_height_new
         end
         
