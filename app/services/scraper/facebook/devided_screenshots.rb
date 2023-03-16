@@ -7,13 +7,19 @@ module Scraper
       end
 
       def perform
-        timestamp = Time.now.to_f
         @browser.execute_script('
           const collection = document.getElementsByClassName("xixxii4");
           for(var i = 0; i < collection.length; i++) { collection[i].classList.remove("xixxii4") }
           for(var i = 0; i < collection.length; i++) { collection[i].classList.remove("xixxii4") }
           for(var i = 0; i < collection.length; i++) { collection[i].classList.remove("xixxii4") }')
-        @browser.execute_script('document.getElementsByClassName("x9f619 x1ja2u2z x1xzczws x7wzq59")[0].remove()')
+        
+        begin
+          @browser.execute_script('document.getElementsByClassName("x9f619 x1ja2u2z x1xzczws x7wzq59")[0].remove()')
+        rescue => exception
+          puts '---------- Exception ----------'
+          puts exception.full_message
+          puts '---------- Exception ----------'
+        end
 
         screen_width = @browser.execute_script("return screen.width;")
         screen_height = @browser.execute_script("return Math.max(document.body.scrollHeight,document.body.offsetHeight,document.documentElement.clientHeight,document.documentElement.scrollHeight,document.documentElement.offsetHeight);")
