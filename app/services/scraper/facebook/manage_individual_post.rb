@@ -17,7 +17,7 @@ module Scraper
         puts "----------- visiting #{@link.href} -----------"
 
         5.times { browser.send_keys(:space) }
-
+        ExpandViewMoreSection.perform(browser)
         browser.window.maximize
         FullPageScreenshot.perform(browser, @scrapping_dir)
         browser.close

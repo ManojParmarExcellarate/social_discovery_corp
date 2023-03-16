@@ -40,8 +40,6 @@ module Scraper
           png = @browser.screenshot.base64
           File.open("#{path_for_data}/#{no_of_screen}.png", 'wb') { |f| f.write(Base64.decode64(png)) }
           sleep(2)
-          puts "--------- saved screenshot #{no_of_screen} ---------"
-          puts "--------- scrollBy #{desired_height} ---------"
           @browser.execute_script("return window.scrollBy(0, #{desired_height})")
         end
 
