@@ -19,7 +19,7 @@ module Scraper
         5.times { browser.send_keys(:space) }
 
         browser.window.maximize
-        FullPageScreenshot.perform(browser, "#{@scrapping_dir}/screenshot.png")
+        FullPageScreenshot.perform(browser, @scrapping_dir)
         browser.close
       end
     end

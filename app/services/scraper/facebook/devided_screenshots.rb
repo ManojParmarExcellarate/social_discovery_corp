@@ -17,7 +17,7 @@ module Scraper
           @browser.execute_script('document.getElementsByClassName("x9f619 x1ja2u2z x1xzczws x7wzq59")[0].remove()')
         rescue => exception
           puts '---------- Exception ----------'
-          puts exception.full_message
+          puts exception.message
           puts '---------- Exception ----------'
         end
 
