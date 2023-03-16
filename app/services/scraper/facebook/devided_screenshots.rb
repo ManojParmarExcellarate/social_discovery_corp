@@ -16,9 +16,9 @@ module Scraper
         begin
           @browser.execute_script('document.getElementsByClassName("x9f619 x1ja2u2z x1xzczws x7wzq59")[0].remove()')
         rescue => exception
-          puts '---------- Exception ----------'
+          puts '---------- Exception DevidedScreenshots ----------'
           puts exception.message
-          puts '---------- Exception ----------'
+          puts '---------- Exception DevidedScreenshots ----------'
         end
 
         screen_width = @browser.execute_script("return screen.width;")
@@ -36,14 +36,15 @@ module Scraper
         path_for_data = @dirname
         Dir.mkdir(path_for_data) unless File.exist?(path_for_data)
 
+        puts "---------- Started taking #{no_of_screens} divided screenshots ----------"
         (1..no_of_screens).each do |no_of_screen|
           png = @browser.screenshot.base64
           File.open("#{path_for_data}/#{no_of_screen}.png", 'wb') { |f| f.write(Base64.decode64(png)) }
           sleep(2)
           @browser.execute_script("return window.scrollBy(0, #{desired_height})")
         end
-
         puts "Screenshots saved at #{path_for_data}"
+        puts "---------- Done taking #{no_of_screens} divided screenshots ----------"
         path_for_data
       end
     end

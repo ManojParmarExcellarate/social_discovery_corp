@@ -6,14 +6,14 @@ module Scraper
       end
 
       def perform
-        5.times do
-          begin
+        begin
+          while @browser.div(css: '.x1w0mnb').present?
             @browser.div(css: '.x1w0mnb').click
-          rescue => exception
-            puts '---------- Exception while clicking View More----------'
-            puts exception.message
-            puts '---------- Exception ----------'
           end
+        rescue => exception
+          puts '---------- Exception ExpandViewMoreSection ----------'
+          puts exception.message
+          puts '---------- Exception ExpandViewMoreSection ----------'
         end
       end
     end
