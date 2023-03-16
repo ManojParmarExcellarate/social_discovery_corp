@@ -18,10 +18,8 @@ module Scraper
 
         5.times { browser.send_keys(:space) }
 
-        screen_width  = browser.execute_script("return Math.max(document.body.scrollWidth,document.body.offsetWidth,document.documentElement.clientWidth,document.documentElement.scrollWidth,document.documentElement.offsetWidth);")
-        screen_height = browser.execute_script("return Math.max(document.body.scrollHeight,document.body.offsetHeight,document.documentElement.clientHeight,document.documentElement.scrollHeight,document.documentElement.offsetHeight);")
-        browser.window.resize_to(screen_width + 250, screen_height + 250) 
-        File.open("#{@scrapping_dir}/screenshot.png", 'wb') { |f| f.write(Base64.decode64(browser.screenshot.base64)) }
+        browser.window.maximize
+        FullPageScreenshot.perform(browser, "#{@scrapping_dir}/screenshot.png")
         browser.close
       end
     end
