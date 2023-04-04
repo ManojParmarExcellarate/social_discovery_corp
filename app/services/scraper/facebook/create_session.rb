@@ -8,8 +8,7 @@ module Scraper
 
       def perform
         @browser.goto('https://www.facebook.com/')
-
-        form = @browser.form(id: 'login_form')
+        return unless @browser.text_field(name: 'email').present?
         @browser.text_field(name: 'email').set(@credentials[:email])
         @browser.text_field(name: 'pass').set(@credentials[:password])
         @browser.button(name: 'login').click
