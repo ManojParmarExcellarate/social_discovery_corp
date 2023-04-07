@@ -28,7 +28,7 @@ module Scraper
         # ApplyDateFilter.perform(@browser, @date_filter)
         sleep(3)
         
-        # TakeProfileFullScreenshot.perform(@browser, @scrapping_dir)
+        TakeProfileFullScreenshot.perform(@browser, @scrapping_dir)
         # ScrapAllPostsOfUser.perform(@browser, @scrapping_dir)
         @browser.close
       end

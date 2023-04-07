@@ -13,8 +13,7 @@ module Scraper
         @browser.text_field(name: 'username').set(@credentials[:username])
         @browser.text_field(name: 'password').set(@credentials[:password])
         @browser.buttons[1].click
-
-        sleep(2)
+        sleep(15)
       end
     end
   end
