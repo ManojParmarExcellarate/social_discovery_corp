@@ -14,7 +14,7 @@ module Scraper
         args: [
             '--disable-notifications',
             '--start-maximized',
-            # '--user-data-dir=/home/synerzip/projects/sdc/social_discovery_corp/public/FACEBOOK_SCRAPPING/USER_DATA',
+            '--user-data-dir=/home/synerzip/projects/sdc/social_discovery_corp/public/INSTAGRAM_SCRAPPING/USER_DATA',
             '--headless'
           ]
         }

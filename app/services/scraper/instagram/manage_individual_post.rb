@@ -7,14 +7,16 @@ module Scraper
       end
 
       def perform
-        browser = Watir::Browser.new :chrome, options: OPTIONS
-        CreateSession.perform(browser, {
-          email: 'souqhfbtesting@gmail.com',
-          username: 'souqh_testing',
-          password: 'Pass@123'
-        })
-
+        client = Selenium::WebDriver::Remote::Http::Default.new
+        browser = Watir::Browser.new :chrome, http_client: client, options: OPTIONS
+        
+        # CreateSession.perform(browser, {
+        #   email: 'souqhfbtesting@gmail.com',
+        #   username: 'souqh_testing',
+        #   password: 'Pass@123'
+        # })
         browser.goto(@link.href)
+        sleep(10)
         puts "----------- visiting #{@link.href} -----------"
 
         5.times { browser.send_keys(:space) }

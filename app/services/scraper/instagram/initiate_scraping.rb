@@ -16,7 +16,8 @@ module Scraper
 
         @timestamp = timestamp
         @date_filter = date_filter
-        @browser = Watir::Browser.new :chrome, options: OPTIONS
+        client = Selenium::WebDriver::Remote::Http::Default.new
+        @browser = Watir::Browser.new :chrome, http_client: client, options: OPTIONS
         # @browser = Watir::Browser.new :firefox #, options: OPTIONS
         @scrapping_dir = "#{Rails.public_path}/INSTAGRAM_SCRAPPING/#{@username.split('/').last}-#{@timestamp}"
         Dir.mkdir(@scrapping_dir) unless File.exist?(@scrapping_dir)
