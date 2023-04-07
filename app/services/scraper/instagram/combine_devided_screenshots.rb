@@ -16,7 +16,7 @@ module Scraper
           if File.exist?("#{@path_for_data}/#{image_no}2.png")
             system "convert #{@path_for_data}/#{image_no}1.png #{@path_for_data}/#{image_no}2.png -append #{final_file_path}"
           end
-          remaining_no_of_screens = if slots_of_10 == slot
+          remaining_no_of_screens = if (no_of_screens % 10 > 0) && slots_of_10 == slot
             no_of_screens % 10
           else
             10 
